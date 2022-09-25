@@ -213,6 +213,9 @@ List of available routes:
 `PATCH /v1/users/:userId` - update user\
 `DELETE /v1/users/:userId` - delete user
 
+**User routes**:\
+`POST /v1/score` - post a score to database\
+
 ## Error Handling
 
 The app has a centralized error handling mechanism.

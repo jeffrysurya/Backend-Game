@@ -2,8 +2,8 @@ const Joi = require('joi');
 
 const createScore = {
   body: Joi.object().keys({
-    playerScore: Joi.number().required(),
-    opponentScore: Joi.number().required(),
+    playerscore: Joi.number().required(),
+    opponentscore: Joi.number().required(),
     result: Joi.string().required(),
   }),
 };

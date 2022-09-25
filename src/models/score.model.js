@@ -6,7 +6,7 @@ const scoreSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  opponetscore: {
+  opponentscore: {
     type: Number,
     required: true,
   },

@@ -1,9 +1,14 @@
 const { Score } = require('../models');
 
-const saveScore = async (ScoreBody) => {
+const createScore = async (ScoreBody) => {
   const scoreDoc = await Score.create(ScoreBody);
   return scoreDoc;
 };
+
+const queryScore = async() => {
+
+};
+
 
 // const getScore = async (id) => {
 //   const scoreDoc = await Score.findById(id);
@@ -16,5 +21,6 @@ const saveScore = async (ScoreBody) => {
 // };
 
 module.exports = {
-  saveScore,
+  createScore,
+  queryScore,
 };
