@@ -1,19 +1,25 @@
 const { Score } = require('../models');
 
 const createScore = async (userId, ScoreBody) => {
-  const scr = {
+  const scoreWithId = {
     playerscore: ScoreBody.playerscore,
     opponentscore: ScoreBody.opponentscore,
     result: ScoreBody.result,
     user: userId,
   };
-  const scoreDoc = await Score.create(scr);
+  const scoreDoc = await Score.create(scoreWithId);
   return scoreDoc;
 };
 
-// const queryScore = async() => {
+const getScoreByUserId = async (userId) => {
+  const scoreDoc = await Score.find({ user: userId });
+  return scoreDoc;
+};
 
-// };
+const queryScore = async (filter, options) => {
+  const score = await Score.paginate(filter, options);
+  return score;
+};
 
 // const getScore = async (id) => {
 //   const scoreDoc = await Score.findById(id);
@@ -27,4 +33,6 @@ const createScore = async (userId, ScoreBody) => {
 
 module.exports = {
   createScore,
+  getScoreByUserId,
+  queryScore,
 };

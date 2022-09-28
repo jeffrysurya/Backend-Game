@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { scoreService } = require('../services');
@@ -10,12 +11,18 @@ const createScore = catchAsync(async (req, res) => {
 });
 
 const getScores = catchAsync(async (req, res) => {
-  const result = await scoreService.queryScores();
+  const filter = pick(req.query, ['playerscore', 'opponentscore', 'result']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await scoreService.queryScore(filter, options);
   res.send(result);
 });
+
 const getScore = catchAsync(async (req, res) => {
-  const result = await scoreService.queryScores();
-  res.send(result);
+  const score = await scoreService.getScoreByUserId(req.params.userId);
+  if (!score) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Score not found');
+  }
+  res.send(score);
 });
 
 module.exports = {

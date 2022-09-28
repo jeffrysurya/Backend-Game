@@ -11,4 +11,6 @@ router
   .post(auth('manageScores'), validate(scoreValidation.createScore), scoreController.createScore)
   .get(auth('getScores'), validate(scoreValidation.getScores), scoreController.getScores);
 
+router.route('/:userId').get(auth('getScore'), scoreController.getScore);
+
 module.exports = router;
